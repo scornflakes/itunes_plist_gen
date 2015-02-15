@@ -16,14 +16,15 @@ if not usr_home:
     usr_home = os.path.expanduser('~/')
 settings_dir = os.path.join(usr_home, '.itunes_plist_gen')
 settings_file = os.path.join(settings_dir, 'settings.ini')
+db_location =  os.path.join(settings_dir, 'itunes.db')
 # make default directory and files if do not exist
 if not os.path.exists(settings_dir):
     os.makedirs(settings_dir)
 if not os.path.exists(settings_file):
     file = open(settings_file)
     file.write("""[Database]
-db_engine: sqlite:///itunes.db
-""")
+db_engine: sqlite:///{}
+""".format(db_location))
     file.close()
 
 config = ConfigParser.ConfigParser()
