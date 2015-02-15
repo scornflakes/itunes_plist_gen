@@ -91,7 +91,7 @@ class Track(Base):
         if m:
             d = json.loads(m.group(1))
 
-            self.DateAdded = datetime.datetime.fromtimestamp(long(d['oau']));
+            self.DateAdded = datetime.datetime.fromtimestamp(long(d['oau']))
         self.calculate_rating()
                 #if "oau" not in track.Comment:
         #    track.Comment = "%s oau:[%d]" %(track.Comment,  actualtime);
@@ -103,12 +103,12 @@ class Track(Base):
         timesince = datetime.datetime.now()-self.DateAdded
         #float(self.PlayedCount*100000000)/timesince.total_seconds()
 
-        if timesince< datetime.timedelta(days=30)  and self.PlayedCount <3:
-            self.Score=400
+        if timesince < datetime.timedelta(days=30) and self.PlayedCount <3:
+            self.Score = 400
             return
 
-        if self.PlayedCount ==0:
-            self.Score=0
+        if self.PlayedCount == 0:
+            self.Score = 0
             return
 
         self.Score = float(self.PlayedCount*100000000)/timesince.total_seconds()
